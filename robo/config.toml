@@ -1,0 +1,63 @@
+# Configuração do robô — valores padrão apontam para o MOCK local (dados 100% fictícios).
+# Caminhos relativos são resolvidos a partir da pasta deste arquivo.
+
+[elaw]
+base_url = "http://127.0.0.1:8701"
+
+[chrome]
+# Chrome do robô, aberto com --remote-debugging-port. O operador faz o login (SSO/MFA) nele;
+# o robô só se acopla à sessão. (9322: porta exclusiva da demonstração.)
+cdp = "http://127.0.0.1:9322"
+
+[cpj]
+base_url = "http://127.0.0.1:8701/cpj"
+# credenciais: variáveis CPJ_LOGIN / CPJ_SENHA ou este arquivo (NUNCA no git; ver .env.exemplo)
+arquivo_env = ".env"
+# grupo de trabalho do cliente no CPJ: o mesmo nº de processo pode existir para OUTRO cliente
+grupo_trabalho = 700
+evento_pauta = "Pauta - Contestação"
+evento_anexada = "Anexar contestação no eLaw"
+
+[pastas]
+relatorios = "../saida/relatorios"   # relatórios baixados do eLaw
+saida = "../saida/execucoes"         # plano/resultado (csv), auditoria (jsonl), log e PRECISA DE VOCE.xlsx
+
+[relatorio]
+template_tarefas = "905"             # modelo pré-configurado "Tarefas"
+timeout_s = 180
+status = ["1", "4"]                  # Pendentes + Atrasados
+tipos = ["7101"]                     # "Anexar contestação" (+ o tipo da [audiencia], se ativa)
+# UM relatório para as duas filas: tarefas que ENTRARAM (data de cadastro) nos últimos N dias.
+# Atenção: o tipo de data "Agendamento" é o PRAZO (fica no futuro), não a entrada.
+tipo_data = "dataRegistrado"
+dias_antes = 90
+dias_depois = 0
+
+[tarefa]
+assunto = "Anexar contesta"          # trecho do Sub Tipo (sem acento final de propósito)
+tipo_documento = "41"                # "Defesa": o form de conclusão aceita poucos tipos
+# processo que JÁ TEM o arquivo (ou uma contestação): "concluir" = conclui sem reenviar | "sinalizar"
+ja_anexado = "concluir"
+justificativa_ja_anexada = "Já anexada"
+# sem contestação no CPJ há N dias CORRIDOS desde a entrada -> conclui com "Não" + a justificativa abaixo
+# (o eLaw abre uma tarefa nova, com prazo novo). Prazo do eLaw = entrada + 20 dias; 17 dá folga
+# para fim de semana. 0 = não reagenda.
+reagendar_apos_dias = 17
+justificativa_reagendar = "Prazo de contestação em curso"
+status_ignorar = ["conclu", "confirmad", "cancelad", "finaliz"]
+max_erros_seguidos = 3               # aborta o lote (a tela mudou? o sistema está instável?)
+
+[audiencia]
+ativo = true
+tipo_tarefa = "7102"                 # "Confirmar realização de audiência / Anexar Ata da Audiência"
+assunto = "Confirmar realiza"
+tipo_ata_com_acordo = "52"           # Frutífera
+tipo_ata_sem_acordo = "53"           # Infrutífera
+
+# Nomes possíveis das colunas no xlsx (comparação sem acento/caixa; ordem = prioridade).
+[colunas]
+numero = ["numero do processo", "numero processo", "no processo"]
+assunto = ["sub tipo", "subtipo", "assunto"]
+status = ["tarefa - status", "status", "situacao"]
+id_tarefa = ["tarefa - id", "id da tarefa", "id tarefa"]
+data = ["data registrado", "cadastro"]

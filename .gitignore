@@ -1,0 +1,26 @@
+# saídas do robô (relatórios baixados, planos, auditoria, PDFs)
+saida/
+*.xlsx
+!docs/**/*.xlsx
+
+# segredos
+.env
+robo/.env
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# empacotamento (PyInstaller)
+build/
+dist/
+*.spec
+
+# IDE / SO
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

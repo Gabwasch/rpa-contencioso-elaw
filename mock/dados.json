@@ -1,0 +1,1215 @@
+{
+ "_aviso": "Dados 100% fictícios gerados por mock/seed.py (random.Random(42)).",
+ "usuario": {
+  "login": "operador",
+  "senha": "demo123",
+  "nome": "Operador Demo"
+ },
+ "cpj_credenciais": {
+  "login": "robo.leitura",
+  "senha": "cpj-demo-123"
+ },
+ "grupo_trabalho_cliente": 700,
+ "tipos_tarefa": {
+  "7101": "Anexar contestação",
+  "7102": "Confirmar realização de audiência / Anexar Ata da Audiência",
+  "7103": "Juntar procuração",
+  "7104": "Cumprir diligência"
+ },
+ "processos": [
+  {
+   "id": 412677,
+   "numero": "9670487-73.2026.8.13.0410",
+   "parte_contraria": "Bruno Teste Demonstrativo",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "MG",
+   "status": "Ativo",
+   "cenario": "contestacao_pronta",
+   "esperado": "pronta -> anexa o PDF e conclui",
+   "tarefas": [
+    {
+     "id": 8860589,
+     "tipo": "7101",
+     "registrado_dias": 4,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    },
+    {
+     "id": 8849735,
+     "tipo": "7104",
+     "registrado_dias": 2,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6383060,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 6,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 415313,
+   "numero": "9777572-54.2026.8.21.4013",
+   "parte_contraria": "Heitor Protótipo Alves",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "RS",
+   "status": "Ativo",
+   "cenario": "contestacao_pronta_prefixo_uf",
+   "esperado": "pronta ('UF - Contestação'); e-mail e procuração ignorados",
+   "tarefas": [
+    {
+     "id": 8807331,
+     "tipo": "7101",
+     "registrado_dias": 6,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogada Demo 2",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6340174,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 8,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 415155,
+   "numero": "9234053-42.2026.8.16.1680",
+   "parte_contraria": "João Ensaio Martins",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "PR",
+   "status": "Ativo",
+   "cenario": "contestacao_pronta_numerada",
+   "esperado": "pronta ('1. contestação'); .docx, chat e versão antiga ignorados",
+   "tarefas": [
+    {
+     "id": 8827869,
+     "tipo": "7101",
+     "registrado_dias": 3,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 3",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6787277,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 5,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 419197,
+   "numero": "9709570-95.2026.8.26.1425",
+   "parte_contraria": "Carla Simulada Souza",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SP",
+   "status": "Ativo",
+   "cenario": "contestacao_ja_anexada",
+   "esperado": "concluir_ja_anexada (CPJ: 'Anexar contestação no eLaw' concluída)",
+   "tarefas": [
+    {
+     "id": 8870644,
+     "tipo": "7101",
+     "registrado_dias": 8,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6375504,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 10,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 418085,
+   "numero": "9619176-92.2026.8.24.0521",
+   "parte_contraria": "Úrsula Faker Pinto",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SC",
+   "status": "Ativo",
+   "cenario": "contestacao_aguardando",
+   "esperado": "aguardando_peca (Pauta ainda pendente)",
+   "tarefas": [
+    {
+     "id": 8811915,
+     "tipo": "7101",
+     "registrado_dias": 3,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogada Demo 2",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6892495,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 5,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 416916,
+   "numero": "9031244-61.2026.8.13.3583",
+   "parte_contraria": "Daniel Mock Pereira",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "MG",
+   "status": "Ativo",
+   "cenario": "contestacao_pauta_sem_pdf",
+   "esperado": "pauta_sem_pdf -> PRECISA DE VOCÊ",
+   "tarefas": [
+    {
+     "id": 8878172,
+     "tipo": "7101",
+     "registrado_dias": 5,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 3",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6166613,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 7,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 419064,
+   "numero": "9243962-21.2026.8.26.9864",
+   "parte_contraria": "Mirela Piloto Nunes",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SP",
+   "status": "Ativo",
+   "cenario": "contestacao_pdf_de_outro_processo",
+   "esperado": "pauta_sem_pdf (TRAVA: o PDF traz o nº de OUTRO processo) -> PRECISA DE VOCÊ",
+   "tarefas": [
+    {
+     "id": 8801504,
+     "tipo": "7101",
+     "registrado_dias": 7,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6813328,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 9,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 415573,
+   "numero": "9027824-90.2026.8.26.3258",
+   "parte_contraria": "Elisa Inventada Rocha",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SP",
+   "status": "Ativo",
+   "cenario": "contestacao_reagendar",
+   "esperado": "reagendar (18 dias sem peça; o eLaw cria tarefa nova)",
+   "tarefas": [
+    {
+     "id": 8814621,
+     "tipo": "7101",
+     "registrado_dias": 18,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogada Demo 2",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6407757,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 20,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 414315,
+   "numero": "9750800-66.2026.8.26.6874",
+   "parte_contraria": "Rui Stub Cardoso",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SP",
+   "status": "Ativo",
+   "cenario": "contestacao_reagendar_sem_pdf",
+   "esperado": "reagendar + PRECISA DE VOCÊ (pauta concluída sem PDF)",
+   "tarefas": [
+    {
+     "id": 8865612,
+     "tipo": "7101",
+     "registrado_dias": 19,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 3",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6898975,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 21,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 418317,
+   "numero": "9231148-76.2026.8.24.9655",
+   "parte_contraria": "Kátia Rascunho Dias",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SC",
+   "status": "Ativo",
+   "cenario": "contestacao_dois_clientes",
+   "esperado": "pronta: o MESMO nº existe no CPJ para outro cliente; só o grupo de trabalho certo vale",
+   "tarefas": [
+    {
+     "id": 8879818,
+     "tipo": "7101",
+     "registrado_dias": 5,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6308573,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 7,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 415038,
+   "numero": "9291704-21.2026.8.13.2616",
+   "parte_contraria": "Fábio Hipotético Lima",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "MG",
+   "status": "Ativo",
+   "cenario": "contestacao_nao_achada_cpj",
+   "esperado": "nao_achado_cpj -> PRECISA DE VOCÊ",
+   "tarefas": [
+    {
+     "id": 8831385,
+     "tipo": "7101",
+     "registrado_dias": 2,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogada Demo 2",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6160738,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 4,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 413946,
+   "numero": "9732052-57.2026.8.24.5575",
+   "parte_contraria": "Sara Dummy Mendes",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SC",
+   "status": "Ativo",
+   "cenario": "contestacao_anexo_orfao",
+   "esperado": "o processo já tem o arquivo (órfão de tentativa anterior) -> não reenvia; conclui 'Já anexada'",
+   "tarefas": [
+    {
+     "id": 8874364,
+     "tipo": "7101",
+     "registrado_dias": 6,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 3",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6182582,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 8,
+     "tarefa_id": null
+    },
+    {
+     "id": 6189814,
+     "nome": "Contestacao - 9732052-57.2026.8.24.5575.pdf",
+     "tipo": "",
+     "dias_atras": 1,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 417787,
+   "numero": "9291369-95.2026.8.16.3528",
+   "parte_contraria": "Leandro Esboço Gomes",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "PR",
+   "status": "Ativo",
+   "cenario": "contestacao_concluida_por_outra_pessoa",
+   "esperado": "pronta no plano, mas alguém conclui antes -> re-checagem por ID = ja_concluida",
+   "tarefas": [
+    {
+     "id": 8872063,
+     "tipo": "7101",
+     "registrado_dias": 9,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": true,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6273148,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 11,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 418835,
+   "numero": "9800581-75.2026.8.21.1675",
+   "parte_contraria": "Túlio Seed Araújo",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "RS",
+   "status": "Ativo",
+   "cenario": "contestacao_falha_no_elaw",
+   "esperado": "o upload grava, o Confirmar falha -> nao_concluiu + ANEXO ÓRFÃO -> PRECISA DE VOCÊ",
+   "tarefas": [
+    {
+     "id": 8898994,
+     "tipo": "7101",
+     "registrado_dias": 5,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogada Demo 2",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": true
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6865388,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 7,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 416118,
+   "numero": "9097251-09.2026.8.24.1585",
+   "parte_contraria": "Renata Fixture Moraes",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SC",
+   "status": "Ativo",
+   "cenario": "audiencia_frutifera",
+   "esperado": "concluir audiência: Frutífera + ata (com acordo)",
+   "tarefas": [
+    {
+     "id": 8857422,
+     "tipo": "7102",
+     "registrado_dias": 6,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 3",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6642717,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 8,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 415539,
+   "numero": "9376417-98.2026.8.21.9892",
+   "parte_contraria": "Íris Modelo Ribeiro",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "RS",
+   "status": "Ativo",
+   "cenario": "audiencia_infrutifera",
+   "esperado": "concluir audiência: Infrutífera + ata (sem acordo)",
+   "tarefas": [
+    {
+     "id": 8802757,
+     "tipo": "7102",
+     "registrado_dias": 5,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6716886,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 7,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 411163,
+   "numero": "9277370-87.2026.8.13.7528",
+   "parte_contraria": "Paulo Placeholder Teixeira",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "MG",
+   "status": "Ativo",
+   "cenario": "audiencia_resultado_antigo",
+   "esperado": "aguardando_resultado (TRAVA: o único resultado é ANTERIOR à tarefa)",
+   "tarefas": [
+    {
+     "id": 8892778,
+     "tipo": "7102",
+     "registrado_dias": 10,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogada Demo 2",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6761759,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 12,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 411160,
+   "numero": "9562275-42.2026.8.13.6202",
+   "parte_contraria": "Ana Exemplo Ficticia",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "MG",
+   "status": "Ativo",
+   "cenario": "audiencia_sem_resultado",
+   "esperado": "aguardando_resultado (sem a linha AUDIENCIA: no CPJ)",
+   "tarefas": [
+    {
+     "id": 8867391,
+     "tipo": "7102",
+     "registrado_dias": 4,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 3",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6349565,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 6,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 418834,
+   "numero": "9082627-41.2026.8.26.4804",
+   "parte_contraria": "Vítor Dado Correia",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SP",
+   "status": "Ativo",
+   "cenario": "audiencia_ata_por_nome",
+   "esperado": "concluir audiência: ata achada pelo nome padrão no processo (sem PDF na tarefa)",
+   "tarefas": [
+    {
+     "id": 8817342,
+     "tipo": "7102",
+     "registrado_dias": 7,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 1",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6858490,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 9,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 416669,
+   "numero": "9869693-47.2026.8.26.5926",
+   "parte_contraria": "Gina Amostra Costa",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "SP",
+   "status": "Ativo",
+   "cenario": "outro_tipo_de_tarefa",
+   "esperado": "ignorada (tipo de tarefa fora do escopo do robô)",
+   "tarefas": [
+    {
+     "id": 8824957,
+     "tipo": "7103",
+     "registrado_dias": 3,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogada Demo 2",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6198907,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 5,
+     "tarefa_id": null
+    }
+   ]
+  },
+  {
+   "id": 411588,
+   "numero": "9605397-78.2026.8.16.1140",
+   "parte_contraria": "Olga Sandbox Freitas",
+   "empresa": "Banco Fictício S.A.",
+   "escritorio": "Escritório Exemplo Advocacia",
+   "area": "Cível",
+   "uf": "PR",
+   "status": "Ativo",
+   "cenario": "fora_da_janela_de_90_dias",
+   "esperado": "fora do relatório (entrou há mais de 90 dias)",
+   "tarefas": [
+    {
+     "id": 8886374,
+     "tipo": "7101",
+     "registrado_dias": 120,
+     "prazo_em_dias": 20,
+     "responsavel": "Advogado Demo 3",
+     "descricao": "Tarefa gerada automaticamente pelo workflow (fictícia).",
+     "concluir_ao_gerar_relatorio": false,
+     "falhar_confirmacao": false
+    }
+   ],
+   "anexos": [
+    {
+     "id": 6551989,
+     "nome": "Peticao inicial.pdf",
+     "tipo": "Petição Inicial",
+     "dias_atras": 122,
+     "tarefa_id": null
+    }
+   ]
+  }
+ ],
+ "cpj": {
+  "processos": [
+   {
+    "pj": 593886,
+    "numero_processo": "9670487-73.2026.8.13.0410",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 514207,
+    "numero_processo": "9777572-54.2026.8.21.4013",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 575435,
+    "numero_processo": "9234053-42.2026.8.16.1680",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 586622,
+    "numero_processo": "9709570-95.2026.8.26.1425",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 516175,
+    "numero_processo": "9619176-92.2026.8.24.0521",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 560432,
+    "numero_processo": "9031244-61.2026.8.13.3583",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 525014,
+    "numero_processo": "9243962-21.2026.8.26.9864",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 566985,
+    "numero_processo": "9027824-90.2026.8.26.3258",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 533416,
+    "numero_processo": "9750800-66.2026.8.26.6874",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 530032,
+    "numero_processo": "9231148-76.2026.8.24.9655",
+    "incidente": 0,
+    "grupo_trabalho": 800,
+    "grupo_desc": "Cível - Outro Cliente"
+   },
+   {
+    "pj": 552487,
+    "numero_processo": "9231148-76.2026.8.24.9655",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 573699,
+    "numero_processo": "9732052-57.2026.8.24.5575",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 544741,
+    "numero_processo": "9291369-95.2026.8.16.3528",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 536365,
+    "numero_processo": "9800581-75.2026.8.21.1675",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 569177,
+    "numero_processo": "9097251-09.2026.8.24.1585",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 582603,
+    "numero_processo": "9376417-98.2026.8.21.9892",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 517716,
+    "numero_processo": "9277370-87.2026.8.13.7528",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 546500,
+    "numero_processo": "9562275-42.2026.8.13.6202",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 584847,
+    "numero_processo": "9082627-41.2026.8.26.4804",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   },
+   {
+    "pj": 556438,
+    "numero_processo": "9605397-78.2026.8.16.1140",
+    "incidente": 0,
+    "grupo_trabalho": 700,
+    "grupo_desc": "Cível - Cliente Exemplo"
+   }
+  ],
+  "tramitacoes": [
+   {
+    "id_tramitacao": 9821590,
+    "pj": 593886,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 2,
+    "hora": "16:15:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9430776,
+    "pj": 514207,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 1,
+    "hora": "14:30:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9514850,
+    "pj": 575435,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 1,
+    "hora": "18:45:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9549245,
+    "pj": 586622,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 5,
+    "hora": "17:45:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9479580,
+    "pj": 586622,
+    "evento": "Anexar contestação no eLaw",
+    "situacao": "Concluída",
+    "dias_atras": 2,
+    "hora": "11:15:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9214975,
+    "pj": 516175,
+    "evento": "Pauta - Contestação",
+    "situacao": "Pendente",
+    "dias_atras": 3,
+    "hora": "10:15:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9500156,
+    "pj": 560432,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 1,
+    "hora": "17:45:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9814825,
+    "pj": 525014,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 2,
+    "hora": "16:30:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9265840,
+    "pj": 566985,
+    "evento": "Pauta - Contestação",
+    "situacao": "Pendente",
+    "dias_atras": 18,
+    "hora": "15:00:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9632342,
+    "pj": 533416,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 4,
+    "hora": "09:30:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9492077,
+    "pj": 530032,
+    "evento": "Anexar contestação no eLaw",
+    "situacao": "Concluída",
+    "dias_atras": 30,
+    "hora": "10:00:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9612340,
+    "pj": 552487,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 1,
+    "hora": "08:00:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9172574,
+    "pj": 573699,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 2,
+    "hora": "16:15:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9653306,
+    "pj": 544741,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 3,
+    "hora": "17:45:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9847581,
+    "pj": 536365,
+    "evento": "Pauta - Contestação",
+    "situacao": "Concluída",
+    "dias_atras": 1,
+    "hora": "12:45:00",
+    "texto": ""
+   },
+   {
+    "id_tramitacao": 9226882,
+    "pj": 569177,
+    "evento": "Secretaria - Envio de Ata",
+    "situacao": "Concluída",
+    "dias_atras": 2,
+    "hora": "11:15:00",
+    "texto": "Audiência realizada por videoconferência.\nAUDIENCIA: REALIZADA - FRUTIFERA\nAcordo homologado."
+   },
+   {
+    "id_tramitacao": 9341292,
+    "pj": 582603,
+    "evento": "Secretaria - Envio de Ata",
+    "situacao": "Concluída",
+    "dias_atras": 1,
+    "hora": "17:15:00",
+    "texto": "AUDIENCIA: INFRUTIFERA"
+   },
+   {
+    "id_tramitacao": 9340062,
+    "pj": 517716,
+    "evento": "Secretaria - Envio de Ata",
+    "situacao": "Concluída",
+    "dias_atras": 40,
+    "hora": "09:00:00",
+    "texto": "AUDIENCIA: REALIZADA - INFRUTIFERA"
+   },
+   {
+    "id_tramitacao": 9801474,
+    "pj": 546500,
+    "evento": "Secretaria - Envio de Ata",
+    "situacao": "Pendente",
+    "dias_atras": 1,
+    "hora": "15:15:00",
+    "texto": "Aguardando a ata do tribunal."
+   },
+   {
+    "id_tramitacao": 9704201,
+    "pj": 584847,
+    "evento": "Secretaria - Envio de Ata",
+    "situacao": "Concluída",
+    "dias_atras": 1,
+    "hora": "15:15:00",
+    "texto": "AUDIENCIA: FRUTIFERA"
+   },
+   {
+    "id_tramitacao": 9544154,
+    "pj": 556438,
+    "evento": "Pauta - Contestação",
+    "situacao": "Pendente",
+    "dias_atras": 120,
+    "hora": "14:45:00",
+    "texto": ""
+   }
+  ],
+  "documentos": [
+   {
+    "id_ged": 3817870,
+    "pj": 593886,
+    "nome": "Contestação - 9670487-73.2026.8.13.0410.pdf",
+    "dias_atras": 2,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3169403,
+    "pj": 514207,
+    "nome": "RS - Contestação - 9777572-54.2026.8.21.4013.pdf",
+    "dias_atras": 1,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3321231,
+    "pj": 514207,
+    "nome": "email_cliente_subsidios.pdf",
+    "dias_atras": 3,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3694731,
+    "pj": 514207,
+    "nome": "Procuração.pdf",
+    "dias_atras": 9,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3249811,
+    "pj": 575435,
+    "nome": "1. contestação 9234053-42.2026.8.16.1680.pdf",
+    "dias_atras": 1,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3377746,
+    "pj": 575435,
+    "nome": "Contestação - rascunho.docx",
+    "dias_atras": 2,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3246413,
+    "pj": 575435,
+    "nome": "chat_atendimento_contestacao.pdf",
+    "dias_atras": 2,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3358607,
+    "pj": 575435,
+    "nome": "Contestação - versão antiga.pdf",
+    "dias_atras": 6,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3634277,
+    "pj": 586622,
+    "nome": "Contestação - 9709570-95.2026.8.26.1425.pdf",
+    "dias_atras": 5,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3654816,
+    "pj": 560432,
+    "nome": "email_cliente.pdf",
+    "dias_atras": 2,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3363626,
+    "pj": 560432,
+    "nome": "Contestação - 9031244-61.2026.8.13.3583.docx",
+    "dias_atras": 1,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3772097,
+    "pj": 525014,
+    "nome": "Contestação - (Processo nº 9777572-54.2026.8.21.4013).pdf",
+    "dias_atras": 2,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3728038,
+    "pj": 530032,
+    "nome": "Contestação - 9231148-76.2026.8.24.9655.pdf",
+    "dias_atras": 31,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3480612,
+    "pj": 552487,
+    "nome": "Contestação - 9231148-76.2026.8.24.9655.pdf",
+    "dias_atras": 1,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3234628,
+    "pj": 573699,
+    "nome": "Contestação - 9732052-57.2026.8.24.5575.pdf",
+    "dias_atras": 2,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3322086,
+    "pj": 544741,
+    "nome": "Contestação - 9291369-95.2026.8.16.3528.pdf",
+    "dias_atras": 3,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3804314,
+    "pj": 536365,
+    "nome": "Contestação - 9800581-75.2026.8.21.1675.pdf",
+    "dias_atras": 1,
+    "id_tramitacao": null
+   },
+   {
+    "id_ged": 3167136,
+    "pj": 569177,
+    "nome": "Ata AUD - 9097251-09.2026.8.24.1585.pdf",
+    "dias_atras": 2,
+    "id_tramitacao": 9226882
+   },
+   {
+    "id_ged": 3107540,
+    "pj": 582603,
+    "nome": "(9376417-98.2026.8.21.9892) Ata AUD.pdf",
+    "dias_atras": 1,
+    "id_tramitacao": 9341292
+   },
+   {
+    "id_ged": 3446479,
+    "pj": 517716,
+    "nome": "Ata AUD antiga.pdf",
+    "dias_atras": 40,
+    "id_tramitacao": 9340062
+   },
+   {
+    "id_ged": 3595948,
+    "pj": 584847,
+    "nome": "Ata de audiencia - com acordo - 9082627-41.2026.8.26.4804.pdf",
+    "dias_atras": 1,
+    "id_tramitacao": null
+   }
+  ]
+ }
+}
