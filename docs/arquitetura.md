@@ -35,7 +35,8 @@ contornar nenhum controle de segurança — a sessão continua sendo do operador
 | `elaw/regras.py` | **todas** as decisões de negócio (filas, travas, reagendamento, "precisa de você") | não |
 | `elaw/tarefas_xlsx.py` | acha o cabeçalho do relatório sozinho e mapeia colunas por apelidos | não |
 | `elaw/cpj.py` | cliente REST: login com novas tentativas, paginação, retry 401/429/5xx | não |
-| `elaw/saida.py` | `plano.csv`, `resultado.csv`, `auditoria.jsonl`, `log.txt`, `PRECISA DE VOCE.xlsx` | não |
+| `elaw/saida.py` | `plano.csv`, `resultado.csv`, `auditoria.jsonl`, `log.txt`, `PRECISA DE VOCE.xlsx` (abas "Precisa de você" e "Feito pelo robô") | não |
+| `elaw/guiado.py` | menu do operador: resumo, duas perguntas S/N (concluir / reagendar), confirmação parcial | não |
 | `elaw/conexao.py` | acoplamento CDP, detecção de sessão expirada | sim |
 | `elaw/seletores.py` | seletores por sufixo de id / texto (nunca `j_id_*`) | — |
 | `elaw/fluxos/*` | telas: busca, ficha, tarefas, relatório assíncrono, conclusão, anexo | sim |
@@ -81,8 +82,37 @@ sequenceDiagram
             end
         end
     end
-    R->>O: resultado.csv · auditoria.jsonl · PRECISA DE VOCE.xlsx
+    R->>O: resultado.csv · auditoria.jsonl · PRECISA DE VOCE.xlsx (2 abas)
 ```
+
+## Modo guiado: confirmação em duas perguntas
+
+No modo guiado o plano é montado em dry-run e o orquestrador chama `confirmar(itens, prontas)` antes de
+executar. "Concluir as prontas" e "reagendar" são decisões separadas, então o operador responde duas
+perguntas e o orquestrador executa **só a lista devolvida** — na mesma sessão, sem gerar o relatório de novo.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor O as Operador
+    participant G as guiado.py
+    participant R as orquestrador.py
+    R->>G: confirmar(itens, prontas)
+    G->>O: Concluir as N prontas agora? [S/N]
+    O-->>G: S ou N
+    G->>O: Reagendar as M sem contestação no CPJ? [S/N]
+    O-->>G: S ou N
+    alt reagendamento recusado
+        G->>G: a tarefa volta à situação anterior (ex. aguardando_peca)
+    end
+    G-->>R: só as tarefas confirmadas (lista vazia = nada)
+    R->>R: executa a lista e grava a planilha da rodada
+```
+
+A planilha da rodada (`PRECISA DE VOCE.xlsx`) tem duas abas: **"Precisa de você"** (o que pede ação
+humana, com a frase do que fazer) e **"Feito pelo robô"** (data da rodada, processo, tarefa, fila, o que o
+robô fez, PDF e ID do anexo no GED). Tarefas que outra pessoa concluiu antes (`ja_concluida`) não entram
+na aba do robô. Quando nada precisa da equipe, a planilha abre direto em "Feito pelo robô".
 
 ## Árvore de decisão
 

@@ -7,7 +7,7 @@
 [![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Playwright](https://img.shields.io/badge/Playwright-CDP-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/python/)
 [![FastAPI](https://img.shields.io/badge/mock-FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![pytest](https://img.shields.io/badge/testes-pytest-0A9EDC?logo=pytest&logoColor=white)](https://docs.pytest.org/)
+[![pytest](https://img.shields.io/badge/pytest-74%20passando-0A9EDC?logo=pytest&logoColor=white)](https://docs.pytest.org/)
 [![License: MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-yellow.svg)](LICENSE)
 [![Dados fictícios](https://img.shields.io/badge/dados-100%25%20fict%C3%ADcios-blueviolet)](#-o-mock-executável)
 
@@ -70,9 +70,10 @@ MFA num robô não é uma opção aceitável.
             conclui as prontas e devolve ao operador só o que precisa de um humano — em português
 ```
 
-O resultado de cada rodada é uma planilha **"PRECISA DE VOCÊ"** com poucas linhas e uma frase do que fazer
-em cada uma ("a contestação anexada no CPJ é de outro processo — corrija o cadastro"), mais trilha de
-auditoria completa para o suporte.
+O resultado de cada rodada é uma planilha com duas abas: **"Precisa de você"**, com poucas linhas e uma
+frase do que fazer em cada uma ("a contestação anexada no CPJ é de outro processo — corrija o cadastro"), e
+**"Feito pelo robô"**, com o que ele gravou no eLaw (processo, tarefa, o que fez, PDF, ID do anexo no GED) —
+mais trilha de auditoria completa para o suporte.
 
 <p align="center"><img src="docs/img/02-tarefas.png" width="860" alt="Tela de tarefas do mock (dados fictícios)"></p>
 
@@ -91,7 +92,9 @@ auditoria completa para o suporte.
 - 🛡️ **Escrita defensiva** — dry-run por padrão, proteção contra anexo órfão/duplicado, re-checagem do
   status pelo ID quando o resultado é incerto, aborto após N erros seguidos.
 - 🗂️ **Rastreabilidade** — `plano.csv`, `resultado.csv`, `auditoria.jsonl`, `log.txt` e
-  `PRECISA DE VOCE.xlsx` por execução.
+  `PRECISA DE VOCE.xlsx` (abas "Precisa de você" e "Feito pelo robô") por execução.
+- 🙋 **Modo guiado para o operador** — menu sem argumentos; "concluir as prontas" e "reagendar" são duas
+  perguntas S/N separadas, e o robô executa só a parte confirmada.
 - 🧪 **Mock executável** — eLaw + CPJ fictícios num único FastAPI, com as armadilhas reais reproduzidas.
 
 ## 🚀 Quickstart
@@ -115,7 +118,8 @@ mostra o resumo:
   11  concluídas pelo robô
    1  já concluídas por outra pessoa
    3  aguardando (o robô tenta de novo amanhã)
-   5  PRECISAM DE VOCÊ  (lista em português para o operador)
+  11  linhas na aba 'Feito pelo robô' (o que o robô gravou no eLaw)
+   5  PRECISAM DE VOCÊ  (aba 'Precisa de você', em português)
 DEMO OK
 ```
 
@@ -136,7 +140,7 @@ flowchart LR
     CH --> E[(eLaw)]
     R -->|REST só leitura| P[(CPJ)]
     R --> REG{{regras.py<br/>decisões puras}}
-    R --> S[/plano · resultado · auditoria<br/>PRECISA DE VOCÊ/]
+    R --> S[/plano · resultado · auditoria<br/>Precisa de você · Feito pelo robô/]
 ```
 
 ```mermaid
@@ -158,7 +162,7 @@ sequenceDiagram
         R->>E: confere anexos → form → upload → Confirmar
         R-->>E: re-checa pelo ID se o resultado for incerto
     end
-    R->>O: PRECISA DE VOCE.xlsx + auditoria
+    R->>O: planilha da rodada (Precisa de você + Feito pelo robô) e auditoria
 ```
 
 Mais diagramas (módulos, árvore de decisão, o mock) em **[docs/arquitetura.md](docs/arquitetura.md)**.
@@ -252,7 +256,15 @@ Cada item abaixo nasceu de um problema real em produção — e virou código, t
     acontece — a aba do operador nunca foi dirigida por Playwright —, mas o robô também prefere a aba já
     logada e a traz para a frente.
 17. **Saída para humanos, não só para máquinas.** O operador recebe uma planilha curta, em português simples;
-    o suporte recebe `auditoria.jsonl` (um evento por linha) e o log. Duas audiências, dois formatos.
+    o suporte recebe `auditoria.jsonl` (um evento por linha) e o log. Duas audiências, dois formatos. A
+    coordenação pediu para ver também o que o robô fez sem abrir o terminal: a planilha ganhou a aba
+    "Feito pelo robô" ("já estava concluída" não entra — não foi o robô) e, quando nada precisa da equipe,
+    abre direto nela.
+18. **Uma pergunta por decisão.** "Concluir as prontas" e "reagendar as que estão sem contestação" são
+    decisões diferentes: um único "Concluir? [S/N]" obrigava a aceitar ou recusar as duas juntas. O modo
+    guiado faz duas perguntas, o `confirmar()` do orquestrador pode devolver **só parte** das prontas, e um
+    reagendamento recusado volta à situação anterior (ex.: `aguardando_peca`) em vez de ficar "pronto" no
+    resultado.
 
 ## 🧪 O mock executável
 
@@ -293,6 +305,11 @@ python rpa_elaw.py <comando> [opções]        # sem comando = modo guiado (menu
 | `anexar --numero CNJ --arquivo peca.pdf [--tipo 31] [--ensaio]` | anexo avulso na aba Anexos | **sim** (exceto `--ensaio`) |
 | `buscar --numero CNJ` | pesquisa um processo | não |
 
+Sem comando, o robô abre o **modo guiado**: `1` rodada do dia (resumo por fila → "Concluir as N
+prontas?" → "Reagendar as M sem contestação no CPJ?" → executa só o que foi confirmado, sem gerar o
+relatório de novo, e abre a planilha da rodada), `2` consultar um processo, `3` abrir a última planilha da
+rodada (precisa de você / feito pelo robô).
+
 Opções globais: `--config`, `--cdp URL`, `--slow-mo ms`. Credenciais do CPJ: `CPJ_LOGIN`/`CPJ_SENHA` no
 ambiente ou em `robo/.env` (modelo em `robo/.env.exemplo`).
 
@@ -300,7 +317,7 @@ ambiente ou em `robo/.env` (modelo em `robo/.env.exemplo`).
 
 | Código | Significado |
 |---|---|
-| `0` | sucesso (itens que precisam de humano vão para `PRECISA DE VOCE.xlsx`) |
+| `0` | sucesso (itens que precisam de humano vão para a aba "Precisa de você" de `PRECISA DE VOCE.xlsx`) |
 | `1` | não concluiu (anexo não confirmado) ou lote abortado por erros seguidos |
 | `2` | Chrome não encontrado, eLaw não autenticado ou **sessão expirada** — faça login e rode de novo |
 | `3` | o eLaw recusou: pesquisa inválida, relatório indisponível, tipo inexistente |
@@ -326,8 +343,8 @@ rpa-contencioso-elaw/
 │       ├── tarefas_xlsx.py  # parser do relatório
 │       ├── cpj.py           # cliente REST do CPJ (só leitura)
 │       ├── orquestrador.py  # a rodada
-│       ├── saida.py         # csv, jsonl, PRECISA DE VOCE.xlsx
-│       ├── guiado.py        # menu do operador
+│       ├── saida.py         # csv, jsonl, planilha da rodada (2 abas)
+│       ├── guiado.py        # menu do operador (perguntas S/N separadas)
 │       └── fluxos/          # processo · tarefas · relatorio · concluir · anexar
 ├── mock/
 │   ├── app.py               # FastAPI (eLaw + CPJ) em um processo
@@ -337,7 +354,7 @@ rpa-contencioso-elaw/
 │   ├── seed.py → dados.json # massa fictícia determinística
 │   ├── pdf.py               # gerador de PDF sem dependências
 │   └── static/              # pf.js (mini PrimeFaces) + style.css
-├── tests/                   # pytest: CNJ, regras, parser, cliente CPJ, plano com o mock
+├── tests/                   # pytest: CNJ, regras, parser, cliente CPJ, plano com o mock, modo guiado
 └── docs/                    # arquitetura.md + capturas do mock
 ```
 
@@ -351,8 +368,10 @@ pytest -q
 Os testes não abrem navegador: cobrem os dígitos verificadores do CNJ, **cada desfecho** das regras, o
 parser de xlsx (cabeçalho fora da linha 1, fallback por regex), o cliente do CPJ contra o próprio mock via
 `TestClient` (filtro por grupo de trabalho, paginação, re-login com token vencido, retry em 503/429) e contra
-uma sessão falsa (erro persistente nunca vira "não encontrado"), além de um teste de integração que passa
-toda a massa fictícia pelas regras e confere o desfecho de cada cenário. O fluxo de tela é verificado pela
+uma sessão falsa (erro persistente nunca vira "não encontrado"), o modo guiado (duas perguntas S/N,
+confirmação parcial, reagendamento recusado voltando a "aguardando") e as duas abas da planilha da rodada,
+além de um teste de integração que passa toda a massa fictícia pelas regras e confere o desfecho de cada
+cenário. O fluxo de tela é verificado pela
 `demo.py`.
 
 ## 🛣️ Roadmap
