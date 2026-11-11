@@ -54,6 +54,8 @@ CONCLUIR_AUDIENCIA = "concluir_audiencia"
 SEM_CONTESTACAO = (AGUARDANDO_PECA, PAUTA_SEM_PDF, CPJ_NAO_ACHADO)
 AGUARDANDO = (AGUARDANDO_PECA, AGUARDANDO_RESULTADO, CPJ_SEM_RESPOSTA)
 CONCLUIDAS = (CONCLUIDA, CONCLUIDA_JA_ANEXADA, REAGENDADA, JA_CONCLUIDA)
+# o que o ROBÔ gravou no eLaw ("já estava concluída" foi outra pessoa -> não entra)
+FEITAS_PELO_ROBO = (CONCLUIDA, CONCLUIDA_JA_ANEXADA, REAGENDADA)
 
 
 @dataclass(frozen=True)
@@ -222,7 +224,11 @@ def avaliar_audiencia(pj: int | None, tramitacoes: list[dict], docs_da_tarefa: C
     return Avaliacao(PRONTA, CONCLUIR_AUDIENCIA, detalhe, pj, ata, resultado)
 
 
-# ------------------------------------------------------------------ "PRECISA DE VOCÊ"
+# ------------------------------------------------------------------ "PRECISA DE VOCÊ" / "FEITO PELO ROBÔ"
+def feita_pelo_robo(situacao: str) -> bool:
+    return situacao in FEITAS_PELO_ROBO
+
+
 def reagendada_com_problema(situacao: str, antes: str) -> bool:
     """Reagendada, mas o motivo pede correção no CPJ -> também vai para a lista do operador."""
     return situacao in (REAGENDADA, PRONTA) and antes in (PAUTA_SEM_PDF, CPJ_NAO_ACHADO)

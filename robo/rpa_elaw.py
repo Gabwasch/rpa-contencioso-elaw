@@ -56,7 +56,8 @@ def _cliente_cpj(cfg: dict):
 
 def _mostrar_resumo(r: dict) -> None:
     print(f"\nResumo: {r['resumo']}")
-    print(f"Precisam de você: {r['precisa_de_voce']}  ->  {Path(r['pasta']) / 'PRECISA DE VOCE.xlsx'}")
+    print(f"Precisam de você: {r['precisa_de_voce']} · feitas pelo robô: {r['feitas_pelo_robo']}  ->  "
+          f"{r['planilha']} (abas 'Precisa de você' e 'Feito pelo robô')")
     print(f"Arquivos da execução: {r['pasta']}")
 
 

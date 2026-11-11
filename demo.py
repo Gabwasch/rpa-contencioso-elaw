@@ -211,6 +211,19 @@ GRUPOS = {
 }
 
 
+def planilha_da_rodada(arq: Path) -> tuple[list, list]:
+    """Linhas das abas 'Precisa de você' e 'Feito pelo robô' (sem a linha de aviso de aba vazia)."""
+    try:
+        from openpyxl import load_workbook
+        wb = load_workbook(arq, read_only=True)
+        abas = [[ln for ln in wb[nome].iter_rows(min_row=2, values_only=True) if ln[1] is not None]
+                for nome in ("Precisa de você", "Feito pelo robô")]
+        wb.close()
+        return abas[0], abas[1]
+    except Exception:
+        return [], []
+
+
 def mostrar_resumo(pasta: Path) -> None:
     with open(pasta / "resultado.csv", encoding="utf-8-sig") as f:
         linhas = list(csv.DictReader(f, delimiter=";"))
@@ -220,14 +233,10 @@ def mostrar_resumo(pasta: Path) -> None:
         n = sum(cont[s] for s in situacoes)
         print(f"  {cor}{n:>3}{FIM}  {rotulo}")
     print(f"  {CINZA}detalhe por situação: {dict(cont)}{FIM}")
-    try:
-        from openpyxl import load_workbook
-        ws = load_workbook(pasta / "PRECISA DE VOCE.xlsx", read_only=True).active
-        voce = list(ws.iter_rows(min_row=2, values_only=True))
-    except Exception:
-        voce = []
-    print(f"\n  {VERMELHO}{NEGRITO}{len(voce):>3}  PRECISAM DE VOCÊ{FIM}  (lista em português para o operador):")
-    for numero, tarefa, fila, o_que_fazer, _ in voce:
+    voce, feitas = planilha_da_rodada(pasta / "PRECISA DE VOCE.xlsx")
+    print(f"\n  {VERDE}{len(feitas):>3}{FIM}  linhas na aba 'Feito pelo robô' (o que o robô gravou no eLaw)")
+    print(f"\n  {VERMELHO}{NEGRITO}{len(voce):>3}  PRECISAM DE VOCÊ{FIM}  (aba 'Precisa de você', em português):")
+    for numero, tarefa, fila, o_que_fazer, *_ in voce:
         print(f"       {VERMELHO}•{FIM} {numero} (tarefa {tarefa}, {fila}): {o_que_fazer}")
     print(f"\n  Arquivos: {pasta}")
     for nome in ("plano.csv", "resultado.csv", "auditoria.jsonl", "log.txt", "PRECISA DE VOCE.xlsx"):

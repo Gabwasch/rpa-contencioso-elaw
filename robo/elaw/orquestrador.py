@@ -6,7 +6,8 @@ Orquestrador da rodada (filas "Anexar contestação" e "Confirmar audiência").
   2. lê o xlsx -> tarefas pendentes das duas filas;
   3. consulta o CPJ (só leitura) e aplica as regras (regras.py) -> PLANO;
   4. DRY-RUN (padrão): só grava o plano.  --executar: conclui as prontas no eLaw;
-  5. grava plano.csv / resultado.csv / auditoria.jsonl / log.txt / PRECISA DE VOCE.xlsx.
+  5. grava plano.csv / resultado.csv / auditoria.jsonl / log.txt / PRECISA DE VOCE.xlsx
+     (abas 'Precisa de você' e 'Feito pelo robô').
 
 Segurança: dry-run por padrão; cada resultado incerto é re-checado no eLaw pelo ID da tarefa;
 o lote ABORTA após N erros seguidos ou se a sessão do eLaw cair (o robô nunca tenta logar).
@@ -418,11 +419,13 @@ def orquestrar(cfg: dict, conectar: Callable, cliente_cpj: Callable, *, xlsx: Pa
 def _fechar(itens: list[Item], pasta: Path, audit: Callable, executado: bool, abortado: str | None) -> dict:
     if executado:
         saida.gravar_csv(itens, pasta / "resultado.csv")
-    n_voce = saida.gravar_precisa_de_voce(itens, pasta / "PRECISA DE VOCE.xlsx")
+    n_voce, n_feitas = saida.gravar_planilha_da_rodada(itens, pasta / saida.ARQUIVO_RODADA)
     resumo: dict[str, int] = {}
     for it in itens:
         chave = f"{it.situacao}/{it.acao}" if it.situacao == R.PRONTA and it.acao else it.situacao
         resumo[chave] = resumo.get(chave, 0) + 1
-    audit("fim", executado=executado, abortado=abortado, precisa_de_voce=n_voce, **resumo)
+    audit("fim", executado=executado, abortado=abortado, precisa_de_voce=n_voce, feitas_pelo_robo=n_feitas,
+          **resumo)
     return {"pasta": str(pasta), "executado": executado, "resumo": resumo, "itens": itens,
-            "abortado": abortado, "precisa_de_voce": n_voce}
+            "abortado": abortado, "precisa_de_voce": n_voce, "feitas_pelo_robo": n_feitas,
+            "planilha": str(pasta / saida.ARQUIVO_RODADA)}
